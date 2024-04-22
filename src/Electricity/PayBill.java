@@ -142,20 +142,21 @@ public class PayBill extends JFrame implements ActionListener{
         
         getContentPane().setBackground(Color.WHITE);        
     }
-    public void actionPerformed(ActionEvent ae){
-        if(ae.getSource() == b1){
-            try{
+    public void actionPerformed(ActionEvent ae) {
+        if (ae.getSource() == b1) {
+            try {
                 Conn c = new Conn();
-                c.s.executeQuery("update bill status = 'Paid' where meter = '"+meter+"' AND month = '"+c1.getSelectedItem()+"'");
-                
-            }catch(Exception e){}
+                c.s.executeUpdate("update bill SET status = 'Paid' where meter = '" + meter + "' AND month = '" + c1.getSelectedItem() + "'");
+            } catch (Exception e) {
+                e.printStackTrace(); // Print any exceptions for debugging
+            }
             this.setVisible(false);
             new Paytm(meter).setVisible(true);
-
-        }else if(ae.getSource()== b2){
+        } else if (ae.getSource() == b2) {
             this.setVisible(false);
-        }        
+        }
     }
+    
     
        
     public static void main(String[] args){
